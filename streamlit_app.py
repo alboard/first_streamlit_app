@@ -27,4 +27,8 @@ streamlit.dataframe(fruits_to_show)
 # Let's Call the Fruityvice API from Our Streamlit App!
 streamlit.header("Fruityvice Fruit Advice!")
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-streamlit.text(fruityvice_response.json())
+# streamlit.text(fruityvice_response.json())
+# automap JSON into tabular dataframe
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+# display df
+streamlit.dataframe(fruityvice_normalized)
