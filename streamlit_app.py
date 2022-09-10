@@ -55,14 +55,14 @@ if st.button('Get fruit load list'):
 
 
 # add fruit
-st.header("Add Fruit")
-def add_fruit(new_fruit):
+st.header("Add Fruit header")
+def add_fruit_function(add_fruit_local_var):
     with my_cnx.cursor() as my_cur:
-        my_cur.execute("insert into PUBLIC.FRUIT_LOAD_LIST values ('" + new_fruit + "')")
-        return 'Thank you for adding ' + new_fruit
+        my_cur.execute("insert into PUBLIC.FRUIT_LOAD_LIST values ('" + add_fruit_local_var + "')")
+        return 'Thank you for adding ' + add_fruit_local_var
 
-add_fruit = st.text_input('add fruit')
+add_fruit_var = st.text_input('add fruit text')
 # add button to add fruit
-if st.button('add fruit'):
+if st.button('add fruit button'):
     my_cnx = snow.connect(**st.secrets["snowflake"])
-    st.text(add_fruit(add_fruit))
+    st.text(add_fruit_function(add_fruit_var))
