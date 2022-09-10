@@ -41,9 +41,7 @@ try:
 except URLError as e:
     st.error()
 
-# blank out rest
-st.stop()   
-
+# button controlled block
 st.header("Fruit load list contains")
 def get_fruit_load_list():
     my_cur = my_cnx.cursor()
