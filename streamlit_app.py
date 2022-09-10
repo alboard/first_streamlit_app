@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
-import snowflake.connector as snow    
+import snowflake.connector as snowflake    
 from urllib.error import URLError
 
 st.header('🍌🥭 Breakfast Favourites')
