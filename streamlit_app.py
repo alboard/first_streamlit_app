@@ -23,19 +23,22 @@ fruits_to_show=my_fruit_list.loc[fruits_selected]
 # Display the table on the page.
 streamlit.dataframe(fruits_to_show)
 
+# help function
+def get_fv_api_date (this_fruit_choice):
+   fvr=requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
+   fvrn=pandas.json.normalize(fvr.json)    
+   return fvrn
+
 # Let's Call the Fruityvice API from Our Streamlit App!
 streamlit.header("Fruityvice Fruit Advice!")
-
-# help function
-def get_fv_api_date (fruit_choice):
-    return(pandas.json_normalize(requests.get("https://fruityvice.com/api/fruit/" + fruit_choice)).json())
 try:
     fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
     streamlit.write('The user entered ', fruit_choice)
     if not fruit_choice:
         streamlit.error("Select a fruit to get inf")
     else:
-        streamlit.dataframe(get_fv_api_date(fruit_choice))
+        r=get_fv_api_date(fruit_choice)
+        streamlit.dataframe(r)
 except URLError as e:
     streamlit.error()
 
