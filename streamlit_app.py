@@ -54,8 +54,15 @@ if st.button('Get fruit load list'):
     st.dataframe(get_fruit_load_list())
 
 
-st.stop()
-# Add fruit
-add_my_fruit=st.text_input('Add a fruit', 'Jackfruit')
-my_cur.execute("insert into PUBLIC.FRUIT_LOAD_LIST values ('" + add_my_fruit + "')")
-st.write('Thank you for adding ', add_my_fruit)
+# add fruit
+st.header("Add Fruit")
+def add_fruit(new_fruit):
+    with my_cnx.cursor() as my_cur:
+        my_cur.execute("insert into PUBLIC.FRUIT_LOAD_LIST values ('" + new_fruit + "')")
+        return 'Thank you for adding ' + new_fruit
+
+add_fruit = st.text_input('add fruit')
+# add button to add fruit
+if st.button('add fruit'):
+    my_cnx = snow.connect(**st.secrets["snowflake"])
+    st.text(add_fruit(add_fruit))
