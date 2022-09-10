@@ -1,13 +1,9 @@
-"""
-This is a comment
-written in
-more than just one line
-"""
 import streamlit
 import pandas
 import requests
 import snowflake.connector    
 
+# static body
 streamlit.header('Breakfast Favourites')
 streamlit.text('🥣 Omega 3 & Blueberry Oatmeal')
 streamlit.text('🥗 Kale, Spinach & Rocket Smoothie')
@@ -15,6 +11,7 @@ streamlit.text('🐔Hard-Boiled Free-Range Egg')
 streamlit.text('🥑🍞 Avocado toast')
 streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
 
+# pull api data direct
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 my_fruit_list = my_fruit_list.set_index('Fruit')
 
@@ -46,5 +43,9 @@ streamlit.text(my_data_row)
 '''
 my_cur.execute("select * from fruit_load_list")
 my_data_rows = my_cur.fetchall()
+my_data_rows.append 
 streamlit.header("fruit_load_list ...")
 streamlit.dataframe(my_data_rows)
+
+# Add fruit
+add_my_fruit=streamlit.text_input('Add a fruit', 'Jackfruit')
