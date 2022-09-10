@@ -26,7 +26,7 @@ streamlit.dataframe(fruits_to_show)
 # help function
 def get_fv_api_date (this_fruit_choice):
    fvr=requests.get("https://fruityvice.com/api/fruit/" + this_fruit_choice)
-   fvrn=pandas.json.normalize(fvr.json)    
+   fvrn=pandas.json_normalize(fvr.json)    
    return fvrn
 
 # Let's Call the Fruityvice API from Our Streamlit App!
